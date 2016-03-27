@@ -5,70 +5,63 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://guangfnian.github.io/</loc>
-<lastmod>2016-03-26T22:27:18-00:00</lastmod>
+<lastmod>2016-03-27T21:04:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/archives.html</loc>
-<lastmod>2016-03-26T22:27:18-00:00</lastmod>
+<lastmod>2016-03-27T21:04:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/tags.html</loc>
-<lastmod>2016-03-26T22:27:18-00:00</lastmod>
+<lastmod>2016-03-27T21:04:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/categories.html</loc>
-<lastmod>2016-03-26T22:27:18-00:00</lastmod>
+<lastmod>2016-03-27T21:04:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/my-super-post.html</loc>
-<lastmod>2010-12-05T19:30:00+08:00</lastmod>
+<loc>http://guangfnian.github.io/2016-03-27-ACM-Solution.html</loc>
+<lastmod>2016-03-27T19:24:54+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/category/python.html</loc>
-<lastmod>2010-12-05T19:30:00+08:06</lastmod>
+<loc>http://guangfnian.github.io/category/acm.html</loc>
+<lastmod>2016-03-27T19:24:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/tag/publishing.html</loc>
-<lastmod>2010-12-05T19:30:00+08:06</lastmod>
+<loc>http://guangfnian.github.io/tag/acm.html</loc>
+<lastmod>2016-03-27T19:24:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/tag/pelican.html</loc>
-<lastmod>2010-12-05T19:30:00+08:06</lastmod>
+<loc>http://guangfnian.github.io/tag/xiao-sai.html</loc>
+<lastmod>2016-03-27T19:24:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/author/alexis-metaireau.html</loc>
-<lastmod>2010-12-05T19:30:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://guangfnian.github.io/author/conan-doyle.html</loc>
-<lastmod>2010-12-05T19:30:00+08:06</lastmod>
+<loc>http://guangfnian.github.io/author/guangfnian.html</loc>
+<lastmod>2016-03-27T19:24:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
