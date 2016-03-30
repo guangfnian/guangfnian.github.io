@@ -288,6 +288,119 @@ numberain</p>
 <hr />
 <h2>Problem E</h2>
 <p>传说中没人写出来的题，留坑待补（估计这个坑补不完了）</p>
+<p>原来是网络流裸题。。。分别令工作和考研为源点和汇点，初始意向连一条流量为1的边，恋人朋友间也连一条流量为1的边，然后跑一遍dinic就好了。。。</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span></span>
+<span class="code-line"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span></span>
+<span class="code-line"><span class="k">const</span> <span class="kt">int</span> <span class="n">inf</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">30</span><span class="p">,</span> <span class="n">maxn</span> <span class="o">=</span> <span class="mi">310</span><span class="p">,</span> <span class="n">maxm</span> <span class="o">=</span> <span class="mi">90010</span><span class="p">,</span> <span class="n">src</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sink</span> <span class="o">=</span> <span class="mi">305</span><span class="p">;</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="k">struct</span> <span class="n">edge</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">nxt</span><span class="p">;</span></span>
+<span class="code-line"><span class="p">}</span><span class="n">e</span><span class="p">[(</span><span class="n">maxm</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)];</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="kt">int</span> <span class="n">g</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">nume</span><span class="p">;</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="n">e</span><span class="p">[</span><span class="o">++</span><span class="n">nume</span><span class="p">].</span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span></span>
+<span class="code-line">    <span class="n">e</span><span class="p">[</span><span class="n">nume</span><span class="p">].</span><span class="n">f</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span></span>
+<span class="code-line">    <span class="n">e</span><span class="p">[</span><span class="n">nume</span><span class="p">].</span><span class="n">nxt</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">];</span></span>
+<span class="code-line">    <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">nume</span><span class="p">;</span></span>
+<span class="code-line">    <span class="n">e</span><span class="p">[</span><span class="o">++</span><span class="n">nume</span><span class="p">].</span><span class="n">v</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span></span>
+<span class="code-line">    <span class="n">e</span><span class="p">[</span><span class="n">nume</span><span class="p">].</span><span class="n">f</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></span>
+<span class="code-line">    <span class="n">e</span><span class="p">[</span><span class="n">nume</span><span class="p">].</span><span class="n">nxt</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">];</span></span>
+<span class="code-line">    <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">nume</span><span class="p">;</span></span>
+<span class="code-line"><span class="p">}</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="kt">void</span> <span class="nf">init</span><span class="p">()</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="n">memset</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">g</span><span class="p">));</span></span>
+<span class="code-line">    <span class="n">nume</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></span>
+<span class="code-line"><span class="p">}</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">que</span><span class="p">;</span></span>
+<span class="code-line"><span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span></span>
+<span class="code-line"><span class="kt">int</span> <span class="n">dist</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="kt">void</span> <span class="nf">bfs</span><span class="p">()</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="n">memset</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dist</span><span class="p">));</span></span>
+<span class="code-line">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span></span>
+<span class="code-line">        <span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span></span>
+<span class="code-line">    <span class="n">vis</span><span class="p">[</span><span class="n">src</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></span>
+<span class="code-line">    <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">src</span><span class="p">);</span></span>
+<span class="code-line">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span></span>
+<span class="code-line">    <span class="p">{</span></span>
+<span class="code-line">        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">();</span></span>
+<span class="code-line">        <span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span></span>
+<span class="code-line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nxt</span><span class="p">)</span></span>
+<span class="code-line">            <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">f</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">])</span></span>
+<span class="code-line">            <span class="p">{</span></span>
+<span class="code-line">                <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">);</span></span>
+<span class="code-line">                <span class="n">dist</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span></span>
+<span class="code-line">                <span class="n">vis</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></span>
+<span class="code-line">            <span class="p">}</span></span>
+<span class="code-line">    <span class="p">}</span></span>
+<span class="code-line"><span class="p">}</span></span>
+<span class="code-line"><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">delta</span><span class="p">)</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">==</span> <span class="n">sink</span><span class="p">)</span></span>
+<span class="code-line">        <span class="k">return</span> <span class="n">delta</span><span class="p">;</span></span>
+<span class="code-line">    <span class="k">else</span></span>
+<span class="code-line">    <span class="p">{</span></span>
+<span class="code-line">        <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></span>
+<span class="code-line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="n">delta</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nxt</span><span class="p">)</span></span>
+<span class="code-line">            <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">f</span> <span class="o">&amp;&amp;</span> <span class="n">dist</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></span>
+<span class="code-line">            <span class="p">{</span></span>
+<span class="code-line">                <span class="kt">int</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">f</span><span class="p">,</span> <span class="n">delta</span><span class="p">));</span></span>
+<span class="code-line">                <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">f</span> <span class="o">-=</span> <span class="n">dd</span><span class="p">;</span></span>
+<span class="code-line">                <span class="n">e</span><span class="p">[</span><span class="n">i</span> <span class="o">^</span> <span class="mi">1</span><span class="p">].</span><span class="n">f</span> <span class="o">+=</span> <span class="n">dd</span><span class="p">;</span></span>
+<span class="code-line">                <span class="n">delta</span> <span class="o">-=</span> <span class="n">dd</span><span class="p">;</span></span>
+<span class="code-line">                <span class="n">ret</span> <span class="o">+=</span> <span class="n">dd</span><span class="p">;</span></span>
+<span class="code-line">            <span class="p">}</span></span>
+<span class="code-line">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span></span>
+<span class="code-line">    <span class="p">}</span></span>
+<span class="code-line"><span class="p">}</span></span>
+<span class="code-line"><span class="kt">int</span> <span class="nf">maxflow</span><span class="p">()</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></span>
+<span class="code-line">    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span></span>
+<span class="code-line">    <span class="p">{</span></span>
+<span class="code-line">        <span class="n">memset</span><span class="p">(</span><span class="n">vis</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">vis</span><span class="p">));</span></span>
+<span class="code-line">        <span class="n">bfs</span><span class="p">();</span></span>
+<span class="code-line">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">sink</span><span class="p">])</span></span>
+<span class="code-line">            <span class="k">return</span> <span class="n">ret</span><span class="p">;</span></span>
+<span class="code-line">        <span class="n">ret</span> <span class="o">+=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">inf</span><span class="p">);</span></span>
+<span class="code-line">    <span class="p">}</span></span>
+<span class="code-line"><span class="p">}</span></span>
+<span class="code-line"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span></span>
+<span class="code-line"><span class="p">{</span></span>
+<span class="code-line">    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">cas</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></span>
+<span class="code-line">    <span class="k">while</span> <span class="p">(</span><span class="o">~</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">))</span></span>
+<span class="code-line">    <span class="p">{</span></span>
+<span class="code-line">        <span class="n">init</span><span class="p">();</span></span>
+<span class="code-line">        <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span></span>
+<span class="code-line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span></span>
+<span class="code-line">        <span class="p">{</span></span>
+<span class="code-line">            <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span></span>
+<span class="code-line">            <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="p">)</span></span>
+<span class="code-line">                <span class="n">add</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span></span>
+<span class="code-line">            <span class="k">else</span></span>
+<span class="code-line">                <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">sink</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span></span>
+<span class="code-line">        <span class="p">}</span></span>
+<span class="code-line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span></span>
+<span class="code-line">        <span class="p">{</span></span>
+<span class="code-line">            <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d %d %d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span></span>
+<span class="code-line">            <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span></span>
+<span class="code-line">            <span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span></span>
+<span class="code-line">        <span class="p">}</span></span>
+<span class="code-line">        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Case #%d:</span><span class="se">\n</span><span class="s">%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">cas</span><span class="o">++</span><span class="p">,</span> <span class="n">maxflow</span><span class="p">());</span></span>
+<span class="code-line">    <span class="p">}</span></span>
+<span class="code-line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span></span>
+<span class="code-line"><span class="p">}</span></span>
+</pre></div>
+
+
 <hr />
 <h2>Problem F</h2>
 <h3>Description</h3>
