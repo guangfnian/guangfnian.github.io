@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="guangfnian" />
+        <meta name="copyright" content="guangfnian" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Python, 爬虫, BeautifulSoup, 爬虫, " />
+
+<meta property="og:title" content="学习Python3爬虫（一）爬取贴吧用户头像 "/>
+<meta property="og:url" content="http://guangfnian.github.io/learn-web-scraping-with-python3-1.html" />
+<meta property="og:description" content="最近在看O&#39;Reilly Media的Web Scraping with Python这本书，第一次看英文原书但是看起来并不是很困难。应该是一本不错的爬虫入门书。我会把自己写的一些小爬虫放到我的github上，欢迎围观orz 获取网页HTML数据 Python3提供了一个urlopen函数（在urllib.request中），可以用来打开url并获取url的HTML数据。 #!/usr/bin/env python3 # -*- coding: utf-8 -*- from urllib.request import urlopen url = r&#39;http://cn.bing.com&#39; html = urlopen(url) print(html.read()) 上面这段代码的功能即为打印必应首页的HTML数据 urlopen()还有其他可选参数，如context参数可以指定访问https时使用的协议版本等，具体见官方文档 解析HTML 得到HTML数据后，接下来的问题就是如何获取我们所需要爬取的信息 ..." />
+<meta property="og:site_name" content="Excited!" />
+<meta property="og:article:author" content="guangfnian" />
+<meta property="og:article:published_time" content="2016-04-02T20:37:25.966177+08:00" />
+<meta name="twitter:title" content="学习Python3爬虫（一）爬取贴吧用户头像 ">
+<meta name="twitter:description" content="最近在看O&#39;Reilly Media的Web Scraping with Python这本书，第一次看英文原书但是看起来并不是很困难。应该是一本不错的爬虫入门书。我会把自己写的一些小爬虫放到我的github上，欢迎围观orz 获取网页HTML数据 Python3提供了一个urlopen函数（在urllib.request中），可以用来打开url并获取url的HTML数据。 #!/usr/bin/env python3 # -*- coding: utf-8 -*- from urllib.request import urlopen url = r&#39;http://cn.bing.com&#39; html = urlopen(url) print(html.read()) 上面这段代码的功能即为打印必应首页的HTML数据 urlopen()还有其他可选参数，如context参数可以指定访问https时使用的协议版本等，具体见官方文档 解析HTML 得到HTML数据后，接下来的问题就是如何获取我们所需要爬取的信息 ...">
+
+        <title>学习Python3爬虫（一）爬取贴吧用户头像  · Excited!
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://guangfnian.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://guangfnian.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://guangfnian.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://guangfnian.github.io/theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://guangfnian.github.io/"><span class=site-name>Excited!</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://guangfnian.github.io">Home</a></li>
+                            <li ><a href="http://guangfnian.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://guangfnian.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://guangfnian.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://guangfnian.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://guangfnian.github.io/learn-web-scraping-with-python3-1.html"> 学习Python3爬虫（一）爬取贴吧用户头像  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <blockquote>
+<p>最近在看O'Reilly Media的<a href="https://book.douban.com/subject/26284925/">Web Scraping with Python</a>这本书，第一次看英文原书但是看起来并不是很困难。应该是一本不错的爬虫入门书。我会把自己写的一些小爬虫放到<a href="https://github.com/guangfnian/Web_Scraping_with_Python3">我的github</a>上，欢迎围观orz</p>
+</blockquote>
+<h2>获取网页HTML数据</h2>
+<p>Python3提供了一个urlopen函数（在urllib.request中），可以用来打开url并获取url的HTML数据。</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="ch">#!/usr/bin/env python3</span></span>
+<span class="code-line"><span class="c1"># -*- coding: utf-8 -*-</span></span>
+<span class="code-line"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span></span>
+<span class="code-line"><span class="n">url</span> <span class="o">=</span> <span class="s1">r&#39;http://cn.bing.com&#39;</span></span>
+<span class="code-line"><span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></span>
+<span class="code-line"><span class="k">print</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></span>
+</pre></div>
+
+
+<p>上面这段代码的功能即为打印必应首页的HTML数据</p>
+<p>urlopen()还有其他可选参数，如context参数可以指定访问https时使用的协议版本等，具体见官方文档</p>
+<h2>解析HTML</h2>
+<p>得到HTML数据后，接下来的问题就是如何获取我们所需要爬取的信息。这时就需要解析HTML了。书中使用的是BeautifulSoup。</p>
+<div class="highlight"><pre><span class="code-line"><span></span>pip install BeautifulSoup4</span>
+</pre></div>
+
+
+<p>同时还需安装lxml解析器</p>
+<div class="highlight"><pre><span class="code-line"><span></span>pip install lxml</span>
+</pre></div>
+
+
+<p>当然也可以使用别的解析器，具体区别见<a href="http://beautifulsoup.readthedocs.org/zh_CN/latest/#id9">这里</a></p>
+<p>其使用具体见<a href="http://beautifulsoup.readthedocs.org/zh_CN/latest/#id11">文档</a></p>
+<p><strong>解析举例：</strong>若现有一个html，要解析出所有的Tag为<code>a</code>，class属性为<code>userinfo_head</code>的数据，则可这样写：</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">pics</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;userinfo_head&#39;</span><span class="p">})</span></span>
+</pre></div>
+
+
+<h2>应用举例</h2>
+<p>这个<a href="http://tieba.baidu.com/f/like/furank?kw=wp7&amp;pn=1">网址</a>是百度WP7吧的经验值排行页面，现在想要爬取排行榜前n页的吧友的头像。</p>
+<p>首先分析排行榜的url，可以发现其是<code>http://tieba.baidu.com/f/like/furank?kw=</code>前缀+<code>wp7</code>吧名+<code>&amp;pn=</code>+<code>1</code>页数组成的。于是可以很容易的构造前n页的url</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">r&#39;http://tieba.baidu.com/f/like/furank?kw=&#39;</span> <span class="o">+</span> <span class="n">tieba_name</span> <span class="o">+</span> <span class="s1">&#39;&amp;pn=&#39;</span><span class="p">;</span></span>
+<span class="code-line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pages</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span></span>
+<span class="code-line">    <span class="n">get_usr_url</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span></span>
+</pre></div>
+
+
+<p>利用chrome的审查元素功能，可以发现排行榜前3的用户在<code>class</code>属性为<code>drl_item_name_top</code>的Tag<code>a</code>中，且其<code>href</code>属性对应了其个人贴吧主页地址；而其余用户的区别在于<code>class</code>属性为<code>drl_item_name_nor</code>
+所以对于排行榜的某页的url，可以这样获取该页上所有用户的主页地址</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">usrs</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;drl_item_name_top&#39;</span><span class="p">})</span> <span class="o">+</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;drl_item_name_nor&#39;</span><span class="p">})</span></span>
+<span class="code-line"><span class="k">for</span> <span class="n">usr</span> <span class="ow">in</span> <span class="n">usrs</span><span class="p">:</span></span>
+<span class="code-line">    <span class="n">download_usr_pic</span><span class="p">(</span><span class="s1">r&#39;http://tieba.baidu.com&#39;</span><span class="o">+</span><span class="n">usr</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">],</span> <span class="n">usr</span><span class="o">.</span><span class="n">get_text</span><span class="p">())</span></span>
+</pre></div>
+
+
+<p>同理可解析出个人主页上的头像url包含在<code>bs.findAll('a', {'class':'userinfo_head'})</code>的<code>src</code>属性中,但该url指向的图片是经过压缩的，并不是我们想要的原图。对比原图的url和压缩后图片的url可以发现，两个url最后一个斜杠后的那一串是一样的，于是可以由压缩过的图片的url来获得原图的url</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">pics</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;userinfo_head&#39;</span><span class="p">})[</span><span class="mi">0</span><span class="p">]</span></span>
+<span class="code-line"><span class="k">for</span> <span class="n">pic</span> <span class="ow">in</span> <span class="n">pics</span><span class="p">:</span></span>
+<span class="code-line">    <span class="n">pic_url</span> <span class="o">=</span> <span class="s1">r&#39;http://himg.baidu.com/sys/portraitl/item/&#39;</span><span class="o">+</span><span class="n">pic</span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></span>
+</pre></div>
+
+
+<p><strong>完整的实现代码：</strong></p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="ch">#!/usr/bin/env python3</span></span>
+<span class="code-line"><span class="c1"># -*- coding: utf-8 -*-</span></span>
+<span class="code-line"><span class="sd">&#39;&#39;&#39;</span></span>
+<span class="code-line"><span class="sd">百度贴吧用户头像原图爬虫（以该吧经验值从高到低开始爬）</span></span>
+<span class="code-line"><span class="sd">&#39;&#39;&#39;</span></span>
+<span class="code-line"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span><span class="p">,</span> <span class="n">Request</span></span>
+<span class="code-line"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span></span>
+<span class="code-line"><span class="kn">import</span> <span class="nn">os</span></span>
+<span class="code-line"><span class="k">def</span> <span class="nf">download_usr_pic</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span><span class="c1">#获取并下载用户头像</span></span>
+<span class="code-line">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></span>
+<span class="code-line">    <span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span></span>
+<span class="code-line">    <span class="n">pics</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;userinfo_head&#39;</span><span class="p">})[</span><span class="mi">0</span><span class="p">]</span></span>
+<span class="code-line">    <span class="k">for</span> <span class="n">pic</span> <span class="ow">in</span> <span class="n">pics</span><span class="p">:</span></span>
+<span class="code-line">        <span class="n">pic_url</span> <span class="o">=</span> <span class="s1">r&#39;http://himg.baidu.com/sys/portraitl/item/&#39;</span><span class="o">+</span><span class="n">pic</span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="c1">#头像原图地址</span></span>
+<span class="code-line">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span></span>
+<span class="code-line">            <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">pic_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></span>
+<span class="code-line">            <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;....ok&#39;</span><span class="p">)</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="k">def</span> <span class="nf">get_usr_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span><span class="c1">#获取url页面上所有用户的个人主页地址</span></span>
+<span class="code-line">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></span>
+<span class="code-line">    <span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span></span>
+<span class="code-line">    <span class="n">usrs</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;drl_item_name_top&#39;</span><span class="p">})</span> <span class="o">+</span> <span class="n">bs</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;drl_item_name_nor&#39;</span><span class="p">})</span></span>
+<span class="code-line">    <span class="k">for</span> <span class="n">usr</span> <span class="ow">in</span> <span class="n">usrs</span><span class="p">:</span></span>
+<span class="code-line">        <span class="n">download_usr_pic</span><span class="p">(</span><span class="s1">r&#39;http://tieba.baidu.com&#39;</span><span class="o">+</span><span class="n">usr</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">],</span> <span class="n">usr</span><span class="o">.</span><span class="n">get_text</span><span class="p">())</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="nb">dir</span> <span class="o">=</span> <span class="s1">&#39;tieba_portrait&#39;</span></span>
+<span class="code-line"><span class="k">try</span><span class="p">:</span></span>
+<span class="code-line">    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span></span>
+<span class="code-line"><span class="k">except</span><span class="p">:</span></span>
+<span class="code-line">    <span class="k">pass</span></span>
+<span class="code-line"><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">tieba_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please input the name of tieba...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></span>
+<span class="code-line"><span class="n">tieba_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tieba_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;GB2312&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">r&#39;\x&#39;</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="c1">#进行网址的GB2312编码</span></span>
+<span class="code-line"><span class="n">pages</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;How many pages do you want?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span></span>
+<span class="code-line"><span class="n">url</span> <span class="o">=</span> <span class="s1">r&#39;http://tieba.baidu.com/f/like/furank?kw=&#39;</span> <span class="o">+</span> <span class="n">tieba_name</span> <span class="o">+</span> <span class="s1">&#39;&amp;pn=&#39;</span><span class="p">;</span></span>
+<span class="code-line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pages</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span></span>
+<span class="code-line">    <span class="n">get_usr_url</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span></span>
+</pre></div>
+            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://guangfnian.github.io/learn-web-scraping-with-python3-1.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'excited';
+        var disqus_identifier = 'http://guangfnian.github.io/learn-web-scraping-with-python3-1.html';
+    var disqus_url = 'http://guangfnian.github.io/learn-web-scraping-with-python3-1.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2016-04-02T20:37:25.966177+08:00">Apr 2, 2016</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://guangfnian.github.io/categories.html#pa-chong-ref">爬虫</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://guangfnian.github.io/tags.html#beautifulsoup-ref">BeautifulSoup
+                    <span>1</span>
+</a></li>
+                <li><a href="http://guangfnian.github.io/tags.html#pa-chong-ref">爬虫
+                    <span>1</span>
+</a></li>
+                <li><a href="http://guangfnian.github.io/tags.html#python-ref">Python
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="https://github.com/guangfnian" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'excited';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
