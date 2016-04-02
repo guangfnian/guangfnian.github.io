@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://guangfnian.github.io/</loc>
-<lastmod>2016-04-02T21:57:33-00:00</lastmod>
+<lastmod>2016-04-02T22:21:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/archives.html</loc>
-<lastmod>2016-04-02T21:57:33-00:00</lastmod>
+<lastmod>2016-04-02T22:21:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/tags.html</loc>
-<lastmod>2016-04-02T21:57:33-00:00</lastmod>
+<lastmod>2016-04-02T22:21:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/categories.html</loc>
-<lastmod>2016-04-02T21:57:33-00:00</lastmod>
+<lastmod>2016-04-02T22:21:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -60,15 +60,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/tag/xiao-sai.html</loc>
-<lastmod>2016-03-27T19:24:54+08:06</lastmod>
+<loc>http://guangfnian.github.io/tag/beautifulsoup.html</loc>
+<lastmod>2016-04-02T20:37:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/tag/beautifulsoup.html</loc>
-<lastmod>2016-04-02T20:37:25+08:06</lastmod>
+<loc>http://guangfnian.github.io/tag/xiao-sai.html</loc>
+<lastmod>2016-03-27T19:24:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
