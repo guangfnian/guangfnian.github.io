@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://guangfnian.github.io/</loc>
-<lastmod>2016-04-06T21:22:24-00:00</lastmod>
+<lastmod>2016-04-06T21:27:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/archives.html</loc>
-<lastmod>2016-04-06T21:22:24-00:00</lastmod>
+<lastmod>2016-04-06T21:27:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/tags.html</loc>
-<lastmod>2016-04-06T21:22:24-00:00</lastmod>
+<lastmod>2016-04-06T21:27:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://guangfnian.github.io/categories.html</loc>
-<lastmod>2016-04-06T21:22:24-00:00</lastmod>
+<lastmod>2016-04-06T21:27:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -60,7 +60,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/tag/pa-chong.html</loc>
+<loc>http://guangfnian.github.io/tag/beautifulsoup.html</loc>
+<lastmod>2016-04-02T20:37:25+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://guangfnian.github.io/tag/python.html</loc>
 <lastmod>2016-04-02T20:37:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -74,22 +81,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://guangfnian.github.io/tag/python.html</loc>
-<lastmod>2016-04-02T20:37:25+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://guangfnian.github.io/tag/beautifulsoup.html</loc>
-<lastmod>2016-04-02T20:37:25+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://guangfnian.github.io/tag/acm.html</loc>
 <lastmod>2016-03-27T19:24:54+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://guangfnian.github.io/tag/pa-chong.html</loc>
+<lastmod>2016-04-02T20:37:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
