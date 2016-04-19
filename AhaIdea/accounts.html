@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app='app' ng-controller='ApplicationCtrl'>
+<head>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<title></title>
+<meta content='' name='description'>
+<meta content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width' name='viewport'>
+<base href='/'>
+<link rel="stylesheet" media="all" href="login.css" />
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="UVCZp6wQKFE8QaLx2c/UGTrbY1nyX55IHt/dn8A7jJA4lJLNXfyieNZU1+Pl+DI2MnsgwfUw6sCtIATTUwJsXA==" />
+</head>
+<body class='production devise sessions new {{currentRoute()}}' layout='column' ng-cloak>
+<hs-flash></hs-flash>
+<div layout-align='center center' layout='column'>
+<md-content>
+<md-card>
+<md-card-content>
+<div class='boom-logo-inverse' layout layout-align='start end'>
+<h2>登录</h2>
+</div>
+<form class="new_account" id="new_account" action="/accounts/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="M5/SzpemFJkcS6pJyv372SMmmcCaQiC7PoLwgtVIULhaW9mkZkqesPZe31v2yh32K4baWJ0tVDONfSnORnGwdA==" /><md-input-container>
+<label for="account_email">邮箱</label>
+<input autofocus="autofocus" type="email" name="account[email]" id="account_email" />
+</md-input-container>
+<md-input-container>
+<label for="account_password">密码</label>
+<input autocomplete="off" type="password" name="account[password]" id="account_password" />
+</md-input-container>
+<label>
+<input name="account[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="account[remember_me]" id="account_remember_me" />
+记住我
+</label>
+<md-input-container>
+<md-button class='md-raised md-primary'>
+登录
+</md-button>
+</md-input-container>
+</form>
+</md-card-content>
+</md-card>
+<ul class='sharedLinks'>
+<li>
+<md-button ng-href='http://app.boomideanet.com/accounts/sign_up' target='_self'>
+注册
+</md-button>
+</li>
+<li>
+<md-button ng-href='http://app.boomideanet.com/accounts/password/new' target='_self'>
+忘记密码？
+</md-button>
+</li>
+<li>
+<md-button ng-href='http://app.boomideanet.com/accounts/confirmation/new' target='_self'>
+没有收到验证邮件？
+</md-button>
+</li>
+</ul>
+
+</md-content>
+</div>
+
+<script src="http://app.boomideanet.com/assets/application-62b66445877f663cef2612e89092efa9.js"></script>
+</body>
+</html>
